@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class PaymentItem extends StatelessWidget {
-  const PaymentItem({super.key, this.isSlected = false});
+  const PaymentItem({super.key, this.isSlected = false, required this.image});
   final bool isSlected;
+  final String image;
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
@@ -24,7 +25,7 @@ class PaymentItem extends StatelessWidget {
               ]
             : [],
       ),
-      child: SvgPicture.asset('assets/images/card.svg'),
+      child: SvgPicture.asset(image),
     );
   }
 }
