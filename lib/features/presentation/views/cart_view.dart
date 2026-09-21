@@ -8,19 +8,21 @@ class CartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        leading: Center(child: SvgPicture.asset('assets/images/arrow.svg')),
-        title: const Text(
-          'My Cart',
-          textAlign: TextAlign.center,
-          style: Style.textStyle25,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          leading: Center(child: SvgPicture.asset('assets/images/arrow.svg')),
+          title: const Text(
+            'My Cart',
+            textAlign: TextAlign.center,
+            style: Style.textStyle25,
+          ),
         ),
+        body: const CartViewBody(),
       ),
-      body: const CartViewBody(),
     );
   }
 }
