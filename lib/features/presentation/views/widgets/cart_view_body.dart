@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:payment/features/presentation/views/payment_details.dart';
 import 'package:payment/features/presentation/views/widgets/custom_button.dart';
 import 'package:payment/features/presentation/views/widgets/order_info.dart';
 import 'package:payment/features/presentation/views/widgets/total_price.dart';
@@ -23,7 +24,14 @@ class CartViewBody extends StatelessWidget {
           const Divider(thickness: 2, height: 34),
           TotalPrice(title: "Total", value: "\$50.00"),
           const SizedBox(height: 16),
-          CustomButton(onPressed: () => {}),
+          CustomButton(
+            onPressed: () => {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PaymentDetails()),
+              ),
+            },
+          ),
           const SizedBox(height: 16),
         ],
       ),
