@@ -10,6 +10,9 @@ class PaymentApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: CartView());
+    return const MaterialApp(
+      home: CartView(),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }
