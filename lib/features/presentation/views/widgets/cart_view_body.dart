@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:payment/features/presentation/views/widgets/order_info.dart';
+import 'package:payment/features/presentation/views/widgets/total_price.dart';
 
 class CartViewBody extends StatelessWidget {
   const CartViewBody({super.key});
@@ -18,6 +19,8 @@ class CartViewBody extends StatelessWidget {
           OrderInfo(orderKey: "Discount", value: "\$0"),
           const SizedBox(height: 3),
           OrderInfo(orderKey: "Shipping", value: "\$8"),
+          const Divider(thickness: 2, height: 34),
+          TotalPrice(title: "Total", value: "\$50.00"),
         ],
       ),
     );
