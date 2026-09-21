@@ -9,6 +9,7 @@ class PaymentDetailsBody extends StatelessWidget {
     return const Column(
       children: [
         PaymentItem(),
+        PaymentItem(isSlected: true),
       ],
     );
   }
