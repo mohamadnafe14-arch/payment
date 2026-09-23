@@ -7,6 +7,8 @@ class PaymentDetailsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [PayementList(), CustomCreaditCard()]);
+    return SingleChildScrollView(
+      child: Column(children: [PayementList(), CustomCreaditCard()]),
+    );
   }
 }
