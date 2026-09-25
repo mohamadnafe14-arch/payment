@@ -41,6 +41,22 @@ class ThankYouBody extends StatelessWidget {
               ),
             ),
           ),
+          Positioned(
+            left: 28,
+            right: 28,
+            bottom: MediaQuery.of(context).size.height * 0.2 + 20,
+            child: Row(
+              children: List.generate(
+                30,
+                (index) => Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 2),
+                    child: Container(height: 1, color: Colors.grey),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
