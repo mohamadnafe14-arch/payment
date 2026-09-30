@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:payment/core/utils/styles.dart';
 import 'package:payment/features/presentation/views/widgets/master_card_container.dart';
 import 'package:payment/features/presentation/views/widgets/payment_item_info.dart';
@@ -34,6 +34,30 @@ class ThankYouContainer extends StatelessWidget {
             const TotalPrice(title: "Total", value: "\$50.00"),
             const SizedBox(height: 16),
             MasterCardContainer(),
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                FaIcon(FontAwesomeIcons.qrcode, color: Colors.black, size: 64),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    border: Border.all(color: Colors.green, width: 2),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Paid",
+                      style: Style.textStyle25.copyWith(
+                        color: Colors.green,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
           ],
         ),
       ),
