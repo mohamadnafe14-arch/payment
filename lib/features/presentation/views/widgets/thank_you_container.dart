@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:payment/core/utils/styles.dart';
+import 'package:payment/features/presentation/views/widgets/master_card_container.dart';
 import 'package:payment/features/presentation/views/widgets/payment_item_info.dart';
+import 'package:payment/features/presentation/views/widgets/total_price.dart';
 
 class ThankYouContainer extends StatelessWidget {
   const ThankYouContainer({super.key});
@@ -27,6 +30,10 @@ class ThankYouContainer extends StatelessWidget {
             const PaymentItemInfo(title: "Date", value: "10/10/2022"),
             const PaymentItemInfo(title: "Time", value: "10:10"),
             const PaymentItemInfo(title: "To", value: "John Doe"),
+            const Divider(thickness: 2, height: 60),
+            const TotalPrice(title: "Total", value: "\$50.00"),
+            const SizedBox(height: 16),
+            MasterCardContainer(),
           ],
         ),
       ),
