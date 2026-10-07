@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:payment/features/presentation/views/payment_details.dart';
 import 'package:payment/features/presentation/views/widgets/custom_button.dart';
 import 'package:payment/features/presentation/views/widgets/order_info.dart';
 import 'package:payment/features/presentation/views/widgets/payment_bottom_sheet.dart';
-import 'package:payment/features/presentation/views/widgets/payment_list.dart';
 import 'package:payment/features/presentation/views/widgets/total_price.dart';
 
 class CartViewBody extends StatelessWidget {
