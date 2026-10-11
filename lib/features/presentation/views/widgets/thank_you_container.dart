@@ -49,9 +49,7 @@ class ThankYouContainer extends StatelessWidget {
                   child: Center(
                     child: Text(
                       "Paid",
-                      style: Style.textStyle25.copyWith(
-                        color: Colors.green,
-                      ),
+                      style: Style.textStyle25.copyWith(color: Colors.green),
                     ),
                   ),
                 ),

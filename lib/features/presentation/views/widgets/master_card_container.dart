@@ -3,9 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:payment/core/utils/styles.dart';
 
 class MasterCardContainer extends StatelessWidget {
-  const MasterCardContainer({
-    super.key,
-  });
+  const MasterCardContainer({super.key});
 
   @override
   Widget build(BuildContext context) {

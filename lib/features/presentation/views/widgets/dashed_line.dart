@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DashedlLine extends StatelessWidget {
-  const DashedlLine({
-    super.key,
-  });
+  const DashedlLine({super.key});
 
   @override
   Widget build(BuildContext context) {
