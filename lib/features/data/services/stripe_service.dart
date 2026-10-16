@@ -17,12 +17,19 @@ class StripeService {
       throw Exception('Failed to create payment intent');
     }
   }
-  Future<void> initPaymentSheet({required String paymentIntentClientSecret}) async {
+
+  Future<void> initPaymentSheet({
+    required String paymentIntentClientSecret,
+  }) async {
     Stripe.instance.initPaymentSheet(
       paymentSheetParameters: SetupPaymentSheetParameters(
         paymentIntentClientSecret: paymentIntentClientSecret,
         merchantDisplayName: 'Mohamed',
       ),
     );
+  }
+
+  Future<void> presentPaymentSheet() async {
+    await Stripe.instance.presentPaymentSheet();
   }
 }
