@@ -3,4 +3,7 @@ class PaymentIntentInput {
   final String currency;
 
   PaymentIntentInput({required this.amount, required this.currency});
+  Map<String, dynamic> toMap() {
+    return {'amount': amount, 'currency': currency};
+  }
 }
