@@ -32,9 +32,8 @@ class CartViewBody extends StatelessWidget {
                   builder: (context) => const PaymentDetails(),
                 ),
               )*/
-              showBottomSheet(
+              showModalBottomSheet(
                 context: context,
-                backgroundColor: Colors.grey,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
                 ),
