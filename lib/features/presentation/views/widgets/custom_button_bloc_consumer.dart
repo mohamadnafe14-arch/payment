@@ -13,6 +13,7 @@ class CustomButtonBlocConusmer extends StatelessWidget {
     return BlocConsumer<PaymentCubit, PaymentState>(
       listener: (context, state) {
         if (state is PaymentFailure) {
+          Navigator.pop(context);
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(state.message)));
