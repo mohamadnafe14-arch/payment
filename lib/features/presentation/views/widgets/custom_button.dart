@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:payment/core/utils/styles.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.onPressed,this.isLoading = false});
+  const CustomButton({
+    super.key,
+    required this.onPressed,
+    this.isLoading = false,
+  });
   final VoidCallback? onPressed;
-  final bool isLoading ;
+  final bool isLoading;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -16,7 +20,7 @@ class CustomButton extends StatelessWidget {
       onPressed: onPressed,
       child: isLoading
           ? const CircularProgressIndicator()
-          :  Text("Complete Payment", style: Style.textStyle22),
+          : Text("Complete Payment", style: Style.textStyle22),
     );
   }
 }

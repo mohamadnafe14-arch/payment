@@ -33,7 +33,7 @@ class CustomButtonBlocConusmer extends StatelessWidget {
               input: PaymentIntentInput(
                 amount: "5000", // Amount in cents
                 currency: "usd",
-                customer: "cus_VUnnXXdXwbzMJo", 
+                customer: "cus_VUnnXXdXwbzMJo",
               ),
             );
           },
