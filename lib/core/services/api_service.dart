@@ -1,24 +1,31 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 
 class ApiService {
-  final _dio = Dio();
-  Future<Response> post({
+  final Dio _dio = Dio();
+
+  Future<Response<dynamic>> post({
     required String url,
     required String token,
-    required String? contentType,
+    String? contentType,
     required Map<String, dynamic> body,
-     Map<String,dynamic>? headers,
+    Map<String, dynamic>? headers,
   }) async {
-    final response = await _dio.post(
-      url,
-      options: Options(
-        headers:headers ?? {
-          'Authorization': 'Bearer $token',
-          'Content-Type': contentType ?? 'application/json',
-        },
-      ),
-      data: body,
-    );
-    return response;
+    try {
+      return await _dio.post<dynamic>(
+        url,
+        data: body,
+        options: Options(
+          contentType: contentType ?? 'application/x-www-form-urlencoded',
+          headers: {'Authorization': 'Bearer $token', ...?headers},
+        ),
+      );
+    } on DioException catch (e) {
+      log('URL: $url');
+      log('Status Code: ${e.response?.statusCode}');
+      log('Stripe Error: ${e.response?.data}');
+      rethrow;
+    }
   }
 }

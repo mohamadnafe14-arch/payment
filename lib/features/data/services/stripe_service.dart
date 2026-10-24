@@ -44,7 +44,9 @@ class StripeService {
   Future<void> makePayment({required PaymentIntentInput input}) async {
     try {
       final paymentIntent = await _createPaymentIntent(input: input);
-      final ephemeralKey = await _createEphemeralKey(customer: paymentIntent.customer!);
+      final ephemeralKey = await _createEphemeralKey(
+        customer: paymentIntent.customer!,
+      );
       await _initPaymentSheet(
         initPaymentIntentModel: InitPaymentIntentModel(
           clientSecret: paymentIntent.clientSecret!,
@@ -57,22 +59,16 @@ class StripeService {
       throw Exception('Payment failed: $e');
     }
   }
+
   Future<EphemeralKey> _createEphemeralKey({required String customer}) async {
     final response = await _apiService.post(
       url: 'https://api.stripe.com/v1/ephemeral_keys',
       token: ApiKeys.secretKey,
       contentType: 'application/x-www-form-urlencoded',
       body: {'customer': customer},
-      headers: {
-          'Authorization': 'Bearer ${ApiKeys.secretKey}',
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Stripe-Version':'2026-09-30.endive',
-      },
+      headers: {'Stripe-Version': '2026-09-30.endive'},
     );
-    if (response.statusCode == 200) {
-      return EphemeralKey.fromJson(response.data);
-    } else {
-      throw Exception('Failed to create ephemeral key');
-    }
+
+    return EphemeralKey.fromJson(response.data);
   }
 }
