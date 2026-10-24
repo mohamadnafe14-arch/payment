@@ -2,6 +2,7 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:payment/core/services/api_service.dart';
 import 'package:payment/core/utils/api_keys.dart';
 import 'package:payment/features/data/models/ephemeral_key/ephemeral_key.dart';
+import 'package:payment/features/data/models/init_payment_intent_model.dart';
 import 'package:payment/features/data/models/payment_intent/payment_intent.model.dart';
 import 'package:payment/features/data/models/payment_intent_input.dart';
 
@@ -24,11 +25,13 @@ class StripeService {
   }
 
   Future<void> _initPaymentSheet({
-    required String paymentIntentClientSecret,
+    required InitPaymentIntentModel initPaymentIntentModel,
   }) async {
     await Stripe.instance.initPaymentSheet(
       paymentSheetParameters: SetupPaymentSheetParameters(
-        paymentIntentClientSecret: paymentIntentClientSecret,
+        paymentIntentClientSecret: initPaymentIntentModel.clientSecret,
+        customerId: initPaymentIntentModel.customerId,
+        customerEphemeralKeySecret: initPaymentIntentModel.ephemeralKey,
         merchantDisplayName: 'Mohamed',
       ),
     );
@@ -41,15 +44,20 @@ class StripeService {
   Future<void> makePayment({required PaymentIntentInput input}) async {
     try {
       final paymentIntent = await _createPaymentIntent(input: input);
+      final ephemeralKey = await _createEphemeralKey(customer: paymentIntent.customer!);
       await _initPaymentSheet(
-        paymentIntentClientSecret: paymentIntent.clientSecret!,
+        initPaymentIntentModel: InitPaymentIntentModel(
+          clientSecret: paymentIntent.clientSecret!,
+          customerId: paymentIntent.customer!,
+          ephemeralKey: ephemeralKey.secret!,
+        ),
       );
       await _presentPaymentSheet();
     } catch (e) {
       throw Exception('Payment failed: $e');
     }
   }
-  Future<EphemeralKey> createEphemeralKey({required String customer}) async {
+  Future<EphemeralKey> _createEphemeralKey({required String customer}) async {
     final response = await _apiService.post(
       url: 'https://api.stripe.com/v1/ephemeral_keys',
       token: ApiKeys.secretKey,
