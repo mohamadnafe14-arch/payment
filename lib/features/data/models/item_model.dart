@@ -1,11 +1,4 @@
-/**
- *  {
-                            "name": "Apple",
-                            "quantity": 4,
-                            "price": '10',
-                            "currency": "USD"
-                          }
- */
+
 class ItemModel {
   final String name;
   final int quantity;

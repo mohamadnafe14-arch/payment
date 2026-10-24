@@ -1,10 +1,4 @@
-/**
- *  "details": {
-                          "subtotal": '100',
-                          "shipping": '0',
-                          "shipping_discount": 0
-                        }
- */
+
 class AmountDetailsModel {
   final String subtotal;
   final String shipping;

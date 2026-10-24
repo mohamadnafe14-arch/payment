@@ -6,7 +6,6 @@ import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import 'package:payment/features/data/models/amount_details_model.dart';
 import 'package:payment/features/data/models/amount_model.dart';
 import 'package:payment/features/data/models/item_model.dart';
-import 'package:payment/features/data/models/payment_intent_input.dart';
 import 'package:payment/features/presentation/manager/cubit/payment_cubit.dart';
 import 'package:payment/features/presentation/views/thank_you_view.dart';
 import 'package:payment/features/presentation/views/widgets/custom_button.dart';
