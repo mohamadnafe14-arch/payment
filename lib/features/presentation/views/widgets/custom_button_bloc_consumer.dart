@@ -41,7 +41,47 @@ class CustomButtonBlocConusmer extends StatelessWidget {
                 customer: "cus_VV26QnXjLF80tV",
               ),
             );*/
-            AmountModel amountModel = AmountModel(
+            final tranaction = getTranaction();
+              _payToPayPal(context, tranaction);
+          },
+        );
+      },
+    );
+  }
+
+  void _payToPayPal(BuildContext context, ({AmountModel amount, List<ItemModel> items}) tranaction) {
+     Navigator.of(context).push(MaterialPageRoute(
+      builder: (BuildContext context) => PaypalCheckoutView(
+        sandboxMode: true,
+        clientId: "YOUR CLIENT ID",
+        secretKey: "YOUR SECRET KEY",
+        transactions:  [
+          {
+            "amount":tranaction.amount.toMap(),
+            "description": "The payment transaction description.",
+            "item_list": {
+              "items": tranaction.items.map((item) => item.toMap()).toList()
+            }
+          }
+        ],
+        note: "Contact us for any questions on your order.",
+        onSuccess: (Map params) async {
+          log("onSuccess: $params");
+          Navigator.pop(context);
+        },
+        onError: (error) {
+          log("onError: $error");
+          Navigator.pop(context);
+        },
+        onCancel: () {
+          log('cancelled:');
+          Navigator.pop(context);
+        },
+      ),
+    ));
+  }
+  ({AmountModel amount, List<ItemModel> items}) getTranaction(){
+     AmountModel amountModel = AmountModel(
               total: '100',
               currency: "USD",
               details: AmountDetailsModel(
@@ -64,38 +104,6 @@ class CustomButtonBlocConusmer extends StatelessWidget {
                 currency: "USD",
               ),
             ];
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => PaypalCheckoutView(
-                  sandboxMode: true,
-                  clientId: "YOUR CLIENT ID",
-                  secretKey: "YOUR SECRET KEY",
-                  transactions:  [
-                    {
-                      "amount":amountModel.toMap(),
-                      "description": "The payment transaction description.",
-                      "item_list": {
-                        "items": items.map((item) => item.toMap()).toList()
-                      }
-                    }
-                  ],
-                  note: "Contact us for any questions on your order.",
-                  onSuccess: (Map params) async {
-                    log("onSuccess: $params");
-                    Navigator.pop(context);
-                  },
-                  onError: (error) {
-                    log("onError: $error");
-                    Navigator.pop(context);
-                  },
-                  onCancel: () {
-                    log('cancelled:');
-                    Navigator.pop(context);
-                  },
-                ),
-              ));
-          },
-        );
-      },
-    );
+            return (amount:amountModel,items:items);
   }
 }
